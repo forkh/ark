@@ -188,7 +188,13 @@ printloop:
   addi  $a1, $a1, 1         # increment left by 1
   j     printloop
 loopend:
+  # Print newline
+  la    $a0, nl
+  li    $v0, 4
+  syscall
+
   add   $a0, $zero, $s0     # move $s0 (address) into $a0
-  addi  $sp, $sp, 4
   lw    $v0, 0($sp)
+  addi  $sp, $sp, 4
+
   jr $ra
