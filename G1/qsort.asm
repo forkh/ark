@@ -6,9 +6,12 @@ banner:  .ascii  "------------------------\n"
          .ascii  "--   MIPS Quicksort   --\n"
          .asciiz "------------------------\n"
 
+comma:   .asciiz ", "
 nl:      .asciiz "\n"
 
-array:   .word   56, 54, 32, 78, 59, 16, 32, 1, 77, -17
+#array:   .word   56, 54, 32, 78, 59, 16, 32, 1, 77, -17
+#array:   .word   10,9,8,7,6,5,4,3,2,1
+array:   .word   1,2,3,4,5,6,7,8,9,10
 
 .text
 main:
@@ -30,35 +33,7 @@ main:
   addi  $a2, $zero, 9   # store the value 9 in reg $s2 (3. argument for qsort)
   jal   qsort           # jump to the qsort procedure and save the return address
 
-  la    $s7, array
-
-  lw    $a0, 0($s7)
-  li    $v0, 1
-  syscall
-
-  la    $a0, nl
-  li    $v0, 4
-  syscall
-
-  lw    $a0, 4($s7)
-  li    $v0, 1
-  syscall
-
-  la    $a0, nl
-  li    $v0, 4
-  syscall
-
-  lw    $a0, 8($s7)
-  li    $v0, 1
-  syscall
-
-  la    $a0, nl
-  li    $v0, 4
-  syscall
-
-  lw    $a0, 12($s7)
-  li    $v0, 1
-  syscall
+  jal printarray
 
   # Restore registers $ra and $a0 - $a2
   lw    $a0,  0($sp)
@@ -73,6 +48,27 @@ main:
 
 
 qsort:
+  add   $s4, $zero, $a0
+
+  add   $a0, $zero, $a1
+  li    $v0, 1
+  syscall
+
+  li    $v0, 4
+  la    $a0, comma
+  syscall
+
+  add   $a0, $zero, $a2
+  li    $v0, 1
+  syscall
+
+  li    $v0, 4
+  la    $a0, nl
+  syscall
+
+  add $a0, $zero, $s4
+
+
   addi  $sp, $sp, -16   # adjust stack for 4 items
   sw    $ra, 12($sp)    # push the return address
   sw    $a2,  8($sp)    # push the 3 arguments $a0=address, $a1=left, $a2=right
@@ -91,6 +87,13 @@ qsort:
   add   $t2, $a1, $a2           # $t2 = $a1 + $a2 <=> $t2 = left + right
   srl   $t2, $t2, 1             # $t2 = $t2 / 2 (shift right by one)
 
+  #li    $v0, 1
+  #add   $s0, $zero, $a0
+  #add   $a0, $zero, $t2
+  #syscall
+  #add   $a0, $zero, $s0
+
+
   sll   $t2, $t2, 2
 
   add   $t2, $a0, $t2           # address of array[(left+right)/2] in $t2
@@ -101,6 +104,8 @@ qsort:
   # $t1 = array[left]; $t2 = last = left; all other temp regs are done with.
 
   add   $t0, $a1, $zero         # i ($t0) = left ($a1)
+
+  jal   printarray
   
 #jal   loop                    # jump to for loop
 
@@ -130,42 +135,22 @@ loop:
 
   j     loop
 
-  #add   $t7, $t3, $zero # TODO: hack
-
-  #lw    $t3, ($t3)              # load array[i] into $t3
-  #slt   $t4, $t3, $t1           # $t4 = 1 if $t3 (array[i]) < $t1 (array[left])
-  #beq   $t4, $zero, loop        # if array[i] < array[left] then jump to loop
-  #addi  $t2, $t2, 1             # increment last ($t2) by one
-  #sll   $t4, $t2, 2             # multiply last by 4 and put result in $t4
-  #add   $t4, $a0, $t4           # $t4 = array address + last*4
-  #lw    $t5, ($t4)              # load array[last] into $t5 (tmp)
-  #sw    $t3, ($t4)              # save array[i] ($t3) to array[last] ($t4)
-
-  # TODO: hack
-  #sw    $t5, ($t7)              # save tmp ($t5) in array[i] ($t7)
-
-  #j     loop
-
 continue:
   #lw    $t6, ($t3)              # load array[left] (addr in $t3) into $t6 (tmp)
   lw    $t6, ($s2)              # load array[left] (addr in $t3) into $t6 (tmp)
 
-  lw    $t7, ($t5)              # load array[last] (addr in $t5) into $t7
+  # Hack
+  sll   $s3, $t2, 2             # multiply last by 4 and put result in $s3
+  add   $s3, $a0, $s3           # $s3 = array address + last * 4
+
+  #lw    $t7, ($t5)              # load array[last] (addr in $t5) into $t7
+  lw    $t7, ($s3)              # load array[last] (addr in $t5) into $t7
   #sw    $t7, ($t3)              # store array[last] ($t7) in array[left] (addr in $3)
   sw    $t7, ($s2)              # store array[last] ($t7) in array[left] (addr in $3)
+  #sw    $t6, ($t5)              # store tmp (array[left] / $t6) in array[last] (addr in $t5)
+  sw    $t6, ($s3)              # store tmp (array[left] / $t6) in array[last] (addr in $t5)
 
-  sw    $t6, ($t5)              # store tmp (array[left] / $t6) in array[last] (addr in $t5)
-
-
-  #jr    $ra                     # return to qsort
-
-  #add   $t0, $t1, $zero         # move array[left] ($t1) into $t0
-
-  #sll   $t3, $a1, 2             # multiply index left by 4 and put in $t3
-  #add   $t3, $a0, $t3           # address of array[left] in $t3
-  #sw    $t5, ($t3)              # store array[last] $t5 in array[left] ($t3)
-  #sw    $t1, ($t4)              # store array[left] in array[last]
-  
+  # Recursive calls 
   add   $s0, $zero, $a2         # store arg right in $s0
   addi  $a2, $t2, -1            # $a2 (3. arg) = last - 1
   jal   qsort                   # recursive call qsort
@@ -174,8 +159,6 @@ continue:
   add   $a2, $zero, $s0         # move right ($s0) back in $a2 (3. arg)
   jal   qsort                   # recursive call qsort
 
-  #j     restore
-
 restore:
   lw    $a0,  0($sp)    # pop arguments
   lw    $a1,  4($sp)
@@ -183,3 +166,29 @@ restore:
   lw    $ra, 12($sp)    # pop return address
   addi  $sp, $sp, 16    # adjust stack pointer to pop 4 items
   jr    $ra
+
+
+printarray:
+  addi  $sp, $sp, -4
+  sw    $v0, 0($sp)
+
+  # Array address is assumed to be in $a0
+  add   $s0, $zero, $a0     # move $a0 (address) into $s0
+printloop:
+  slt   $t0, $a2, $a1       # set $t0 = 1 if $a2 (right) < $a1 (left)
+  bne   $t0, $zero, loopend # end loop if right < left
+  sll   $t1, $a1, 2         # multiply left ($a1) by 4
+  add   $t1, $s0, $t1       # $t1 = array address + left * 4
+  lw    $a0, ($t1)          # load array[left] into $a0 (arg for syscall)
+  li    $v0, 1              # syscall service number for print int
+  syscall                   # issue syscall for print int
+  la    $a0, comma          # load address of comma string into $a0
+  li    $v0, 4              # syscall service number for print string
+  syscall                   # issue syscall for print string
+  addi  $a1, $a1, 1         # increment left by 1
+  j     printloop
+loopend:
+  add   $a0, $zero, $s0     # move $s0 (address) into $a0
+  addi  $sp, $sp, 4
+  lw    $v0, 0($sp)
+  jr $ra

@@ -26,7 +26,8 @@ void qsort(int v[], int left, int right)
 
 void main()
 {
-  int vector[10] = { 56, 54, 32, 78, 59, 16, 32, 1, 77, -17 };
+  //int vector[10] = { 56, 54, 32, 78, 59, 16, 32, 1, 77, -17 };
+  int vector[10] = { 1,2,3,4,5,6,7,8,9,10 };
   int i;
   qsort(vector, 0, 9);
   for (i=0; i<10; i++) printf("%d\n", vector[i]);
