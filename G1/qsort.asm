@@ -101,54 +101,80 @@ qsort:
   # $t1 = array[left]; $t2 = last = left; all other temp regs are done with.
 
   add   $t0, $a1, $zero         # i ($t0) = left ($a1)
-  jal   loop                    # jump to for loop
-
-  #add   $t0, $t1, $zero         # move array[left] ($t1) into $t0
-
-  sll   $t3, $a1, 2             # multiply index left by 4 and put in $t3
-  add   $t3, $a0, $t3           # address of array[left] in $t3
-  sw    $t5, ($t3)              # store array[last] $t5 in array[left] ($t3)
-  sw    $t1, ($t4)              # store array[left] in array[last]
   
-  add   $s0, $zero, $a2
-  addi  $a2, $t2, -1
-  jal   qsort
-
-  addi  $a1, $t2, 1
-  add   $a2, $zero, $s0
-  jal   qsort
-
-  j     restore
-
+#jal   loop                    # jump to for loop
 
 loop:
   addi  $t0, $t0, 1             # increment i by one
   slt   $t3, $a2, $t0           # loop condition: if right < i then set $t3 = 1
-  bne   $t3, $zero, end         # branch to end label if $t3 = 1
+  bne   $t3, $zero, continue    # branch to continue label if $t3 = 1
   
   sll   $t3, $t0, 2             # $t3 = $t0 * 4
   add   $t3, $a0, $t3           # address of array[i] in $t3 
 
-  add   $t7, $t3, $zero # TODO: hack
+  #hack
+  add   $s2,  $zero, $t3
 
-  lw    $t3, ($t3)              # load array[i] into $t3
-  slt   $t4, $t3, $t1           # $t4 = 1 if $t3 (array[i]) < $t1 (array[left])
-  beq   $t4, $zero, loop        # if array[i] < array[left] then jump to loop
+  lw    $t4, ($t3)              # load array[i] into $t4
 
-  addi  $t2, $t2, 1             # increment last ($t2) by one
-  sll   $t4, $t2, 2             # multiply last by 4 and put result in $t4
-  add   $t4, $a0, $t4           # $t4 = array address + last*4
-  lw    $t5, ($t4)              # load array[last] into $t5 (tmp)
-  sw    $t3, ($t4)              # save array[i] ($t3) to array[last] ($t4)
+  slt   $t5, $t4, $t1           # set $t5 to 1 if $t4 (array[i]) < $t1 (array[left])
+  beq   $t5, $zero, loop        # if $t5 is 0 (array[i] >= array[left]), branch to loop
 
-  # TODO: hack
-  sw    $t5, ($t7)              # save tmp in array[i] ($t3)
+  addi  $t2, $t2, 1             # increment last ($t2) by 1
+
+  sll   $t5, $t2, 2             # multiply last by 4 and put result in $t5
+  add   $t5, $a0, $t5           # $t5 = array address + last * 4
+  lw    $t6, ($t5)              # load array[last] (addr in $t5) into $t6 (tmp) 
+  sw    $t4, ($t5)              # store array[i] ($t4) in array[last] (addr in $t5)
+  sw    $t6, ($t3)              # store tmp ($t6) in array[i] (addr in $t3)
 
   j     loop
 
-end:
-  jr    $ra                     # return to qsort
+  #add   $t7, $t3, $zero # TODO: hack
 
+  #lw    $t3, ($t3)              # load array[i] into $t3
+  #slt   $t4, $t3, $t1           # $t4 = 1 if $t3 (array[i]) < $t1 (array[left])
+  #beq   $t4, $zero, loop        # if array[i] < array[left] then jump to loop
+  #addi  $t2, $t2, 1             # increment last ($t2) by one
+  #sll   $t4, $t2, 2             # multiply last by 4 and put result in $t4
+  #add   $t4, $a0, $t4           # $t4 = array address + last*4
+  #lw    $t5, ($t4)              # load array[last] into $t5 (tmp)
+  #sw    $t3, ($t4)              # save array[i] ($t3) to array[last] ($t4)
+
+  # TODO: hack
+  #sw    $t5, ($t7)              # save tmp ($t5) in array[i] ($t7)
+
+  #j     loop
+
+continue:
+  #lw    $t6, ($t3)              # load array[left] (addr in $t3) into $t6 (tmp)
+  lw    $t6, ($s2)              # load array[left] (addr in $t3) into $t6 (tmp)
+
+  lw    $t7, ($t5)              # load array[last] (addr in $t5) into $t7
+  #sw    $t7, ($t3)              # store array[last] ($t7) in array[left] (addr in $3)
+  sw    $t7, ($s2)              # store array[last] ($t7) in array[left] (addr in $3)
+
+  sw    $t6, ($t5)              # store tmp (array[left] / $t6) in array[last] (addr in $t5)
+
+
+  #jr    $ra                     # return to qsort
+
+  #add   $t0, $t1, $zero         # move array[left] ($t1) into $t0
+
+  #sll   $t3, $a1, 2             # multiply index left by 4 and put in $t3
+  #add   $t3, $a0, $t3           # address of array[left] in $t3
+  #sw    $t5, ($t3)              # store array[last] $t5 in array[left] ($t3)
+  #sw    $t1, ($t4)              # store array[left] in array[last]
+  
+  add   $s0, $zero, $a2         # store arg right in $s0
+  addi  $a2, $t2, -1            # $a2 (3. arg) = last - 1
+  jal   qsort                   # recursive call qsort
+
+  addi  $a1, $t2, 1             # $a1 (2. arg) = last + 1
+  add   $a2, $zero, $s0         # move right ($s0) back in $a2 (3. arg)
+  jal   qsort                   # recursive call qsort
+
+  #j     restore
 
 restore:
   lw    $a0,  0($sp)    # pop arguments
