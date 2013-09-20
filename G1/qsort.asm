@@ -12,19 +12,23 @@ array:   .word   56, 54, 32, 78, 59, 16, 32, 1, 77, -17
 
 .text
 main:
-#  la    $a0, banner     # load the memory address of ascii string banner into reg $a0
-#  li    $v0, 4          # store syscall service number 4 for print string in reg $v0
-#  syscall               # issue a print string syscall of the string in banner
+  # Push the values of $ra, $a0, $a1 and $a2 onto the stack
+  addi  $sp, $sp, -16   # adjust stack for 4 items
+  sw    $ra, 12($sp)    # push the return address
+  sw    $a2,  8($sp)    # push the 3 registers $a0, $a1 and $a2
+  sw    $a1,  4($sp)
+  sw    $a0,  0($sp)
 
-  la    $a0, array      # load address of array into reg $s0
-                        # (first argument for qsort)
-  addi  $a1, $zero, 0   # store the value 0 in reg $s1
-                        # (second argument for qsort)
-  addi  $a2, $zero, 9   # store the value 9 in reg $s2
-                        # (third argument for qsort)
-  jal   qsort           # jump to qsort procedure
+  # Print MIPS Quicksort banner
+  la    $a0, banner     # load the memory address of ascii string banner into reg $a0
+  li    $v0, 4          # store syscall service number 4 for print string in reg $v0
+  syscall               # issue a print string syscall
 
-
+  # Place arguments and run quicksort
+  la    $a0, array      # load address of array into reg $s0 (1. argumet for qsort)
+  addi  $a1, $zero, 0   # store the value 0 in reg $s1 (2. argument for qsort)
+  addi  $a2, $zero, 9   # store the value 9 in reg $s2 (3. argument for qsort)
+  jal   qsort           # jump to the qsort procedure and save the return address
 
   la    $s7, array
 
@@ -56,8 +60,14 @@ main:
   li    $v0, 1
   syscall
 
+  # Restore registers $ra and $a0 - $a2
+  lw    $a0,  0($sp)
+  lw    $a1,  4($sp)
+  lw    $a2,  8($sp)
+  lw    $ra, 12($sp)
+  addi  $sp, $sp, 16    # adjust stack pointer to pop 4 items
 
-
+  # Exit syscall
   li    $v0, 10         # exit / stop execution service number
   syscall               # syscall to perform exit
 
