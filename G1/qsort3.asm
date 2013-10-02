@@ -26,13 +26,7 @@ main:
   li    $v0, 10               # exit / stop execution service number
   syscall                     # syscall to perform exit
 
-
 qsort:
-  #addi  $sp, $sp, -16         # adjust stack for 4 items / 4 words
-  #sw    $ra, 12($sp)          # push the return address
-  #sw    $a2,  8($sp)          # push the 3 arguments $a0=address, $a1=left, $a2=right
-  #sw    $a1,  4($sp)
-  #sw    $a0,  0($sp)
   addi  $sp, $sp, -4          # adjust stack pointer for 1 item / 1 word
   sw    $ra, 0($sp)           # push the return address
 
@@ -69,7 +63,7 @@ loop:
   # If conditional
   sll   $t3, $t2, 2           # $t3 = i * 4
   add   $t3, $a0, $t3         # $t3 = array addr + i * 4
-  lw    $t4, 0($t3)            # load array[i] into $t4
+  lw    $t4, 0($t3)           # load array[i] into $t4
   
   slt   $t5, $t4, $t1         # set $t5 = 1 if array[i] ($t4) < array[left] ($t1)
   beq   $t5, $zero, loop      # branch to loop if $t5 is 0 (array[i] >= array[left])
@@ -78,33 +72,24 @@ loop:
 
   sll   $t5, $t0, 2           # multiply last by 4 and put result in $t5
   add   $t5, $a0, $t5         # $t5 = array addr + last * 4
-  lw    $t6, 0($t5)            # load array[last] into $t6
-  sw    $t4, 0($t5)            # store array[i] ($t4) in array[last] (addr in $t5)
-  sw    $t6, 0($t3)            # store array[last] ($t6) in array[i] (addr in $t3)
+  lw    $t6, 0($t5)           # load array[last] into $t6
+  sw    $t4, 0($t5)           # store array[i] ($t4) in array[last] (addr in $t5)
+  sw    $t6, 0($t3)           # store array[last] ($t6) in array[i] (addr in $t3)
   
   j     loop                  # loop
 
   # Relevant registers: $t0 = last, $1 = array[left] (value), $t5 = array[last] (addr),
   #                     $t6 = array[last] (value)
 continue:
-  add   $t2, $zero, $t1       # move array[left] into $t2
-
   sll   $t3, $a1, 2           # multiply left by 4 and put result in $t3
   add   $t3, $a0, $t3         # $t3 = array addr + 4 * left
 
-  sll   $t5, $t0, 2
-  add   $t5, $a0, $t5
-
-  lw    $t6, 0($t5)
+  sll   $t5, $t0, 2           # multiply last by 4 and put result in $t5
+  add   $t5, $a0, $t5         # $t5 = array addr + 4 * last
+  lw    $t6, 0($t5)           # load array[last] (addr in $t5) into $t6
 
   sw    $t6, 0($t3)           # store array[last] ($t6) in array[left] (addr in $t3)
-
-  sw    $t2, 0($t5)            # store array[left] ($t2) in array[last] (addr in $t5)
-
-  # Preserve right, left and last across recursive calls
-  #add   $s0, $zero, $a1       # copy left index ($a1) to $s0
-  #add   $s1, $zero, $a2       # copy right index ($a2) to $s1
-  #add   $s2, $zero, $t0       # copy last ($t0) to $s2
+  sw    $t1, 0($t5)           # store array[left] ($t1) in array[last] (addr in $t5)
 
   addi  $sp, $sp, -12         # adjust stack for 3 words
   sw    $a2, 8($sp)           # push right ($a2) onto stack
@@ -126,17 +111,10 @@ continue:
   jal   qsort                 # recursive call qsort and place return address in $ra
 
 restore:
-  #lw    $a0,  0($sp)          # pop arguments
-  #lw    $a1,  4($sp)
-  #lw    $a2,  8($sp)
-  #lw    $ra, 12($sp)          # pop return address
-  #addi  $sp, $sp, 16          # adjust stack pointer to pop 4 items
-
   lw    $ra, 0($sp)           # pop return address
   addi  $sp, $sp, 4           # adjust stack pointer to pop 1 item / 1 word
 
   jr    $ra
-
 
 # Print integer array.
 # Array address is assumed to be in $a0 and indices in $a1 and $a2.
