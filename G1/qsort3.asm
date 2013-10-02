@@ -42,16 +42,20 @@ qsort:
 
   sll   $t0, $a1, 2           # shift 2 left on left index (multiply by 4), save in $t0
   add   $t0, $a0, $t0         # add left*4 ($t0) to array address ($a0) and save in $t0
-  lw    $t1, ($t0)            # load array[left] into $t1 (= tmp)
+  lw    $t1, 0($t0)            # load array[left] into $t1 (= tmp)
 
   add   $t2, $a1, $a2         # sum of left and right indices in $t2
   srl   $t2, $t2, 1           # divided by 2 (shift right by 1) (truncated)
   sll   $t2, $t2, 2           # converted to bytes (index * 4)
   add   $t2, $a0, $t2         # add (left+right)/2 to array address ($a0) and save in $t2
-  lw    $t3, ($t2)            # load array[(left+right)/2] into $t3
-  sw    $t3, ($t0)            # store array[(left+right)/2] in array[left] (addr in $t0)
+  lw    $t3, 0($t2)            # load array[(left+right)/2] into $t3
+  sw    $t3, 0($t0)            # store array[(left+right)/2] in array[left] (addr in $t0)
 
-  sw    $t1, ($t2)            # store array[left] / tmp ($t1) in array[(left+right)/2]
+  sw    $t1, 0($t2)            # store array[left] / tmp ($t1) in array[(left+right)/2]
+  
+  sll   $t1, $a1, 2
+  add   $t1, $a0, $t1
+  lw    $t1, ($t1)
 
   add   $t0, $zero, $a1       # last ($t0) = left ($a1)
   add   $t2, $zero, $a1       # i ($t2) = left ($a1)
@@ -65,7 +69,7 @@ loop:
   # If conditional
   sll   $t3, $t2, 2           # $t3 = i * 4
   add   $t3, $a0, $t3         # $t3 = array addr + i * 4
-  lw    $t4, ($t3)            # load array[i] into $t4
+  lw    $t4, 0($t3)            # load array[i] into $t4
   
   slt   $t5, $t4, $t1         # set $t5 = 1 if array[i] ($t4) < array[left] ($t1)
   beq   $t5, $zero, loop      # branch to loop if $t5 is 0 (array[i] >= array[left])
@@ -74,10 +78,10 @@ loop:
 
   sll   $t5, $t0, 2           # multiply last by 4 and put result in $t5
   add   $t5, $a0, $t5         # $t5 = array addr + last * 4
-  lw    $t6, ($t5)            # load array[last] into $t6
-  sw    $t4, ($t5)            # store array[i] ($t4) in array[last] (addr in $t5)
-  sw    $t6, ($t3)            # store array[last] ($t6) in array[i] (addr in $t3)
-
+  lw    $t6, 0($t5)            # load array[last] into $t6
+  sw    $t4, 0($t5)            # store array[i] ($t4) in array[last] (addr in $t5)
+  sw    $t6, 0($t3)            # store array[last] ($t6) in array[i] (addr in $t3)
+  
   j     loop                  # loop
 
   # Relevant registers: $t0 = last, $1 = array[left] (value), $t5 = array[last] (addr),
@@ -87,8 +91,11 @@ continue:
 
   sll   $t3, $a1, 2           # multiply left by 4 and put result in $t3
   add   $t3, $a0, $t3         # $t3 = array addr + 4 * left
-  sw    $t6, ($t3)            # store array[last] ($t6) in array[left] (addr in $t3)
-  sw    $t2, ($t5)            # store array[left] ($t2) in array[last] (addr in $t5)
+  sw    $t6, 0($t3)            # store array[last] ($t6) in array[left] (addr in $t3)
+
+  sll   $t5, $t0, 2
+  add   $t5, $a0, $t5
+  sw    $t2, 0($t5)            # store array[left] ($t2) in array[last] (addr in $t5)
 
   # Preserve right, left and last across recursive calls
   #add   $s0, $zero, $a1       # copy left index ($a1) to $s0
@@ -138,7 +145,7 @@ printLoop:
   bne   $t2, $zero, printEnd  # end loop if $t0 is 1
   sll   $t2, $t1, 2           # multiply index $t1 by 4
   add   $t3, $t0, $t2         # $t3 = array address + index * 4 (addr of next element)
-  lw    $a0, ($t3)            # load array[index] into $a0 (arg for syscall)
+  lw    $a0, 0($t3)            # load array[index] into $a0 (arg for syscall)
   li    $v0, 1                # syscall service number for print int
   syscall                     # issue syscall for print int
   la    $a0, comma            # load address of comma string into $a0
