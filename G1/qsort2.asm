@@ -154,3 +154,4 @@ printEnd:
   syscall
 
   jr    $ra                   # Jump to return address
+
