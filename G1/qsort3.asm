@@ -48,14 +48,14 @@ qsort:
   srl   $t2, $t2, 1           # divided by 2 (shift right by 1) (truncated)
   sll   $t2, $t2, 2           # converted to bytes (index * 4)
   add   $t2, $a0, $t2         # add (left+right)/2 to array address ($a0) and save in $t2
-  lw    $t3, 0($t2)            # load array[(left+right)/2] into $t3
-  sw    $t3, 0($t0)            # store array[(left+right)/2] in array[left] (addr in $t0)
+  lw    $t3, 0($t2)           # load array[(left+right)/2] into $t3
+  sw    $t3, 0($t0)           # store array[(left+right)/2] in array[left] (addr in $t0)
 
-  sw    $t1, 0($t2)            # store array[left] / tmp ($t1) in array[(left+right)/2]
+  sw    $t1, 0($t2)           # store array[left] / tmp ($t1) in array[(left+right)/2]
   
-  sll   $t1, $a1, 2
-  add   $t1, $a0, $t1
-  lw    $t1, ($t1)
+  sll   $t1, $a1, 2           # $t1 = $a1 (left) * 4
+  add   $t1, $a0, $t1         # $t1 = array + left * 4 (addr)
+  lw    $t1, 0($t1)           # load array[left] into $t1
 
   add   $t0, $zero, $a1       # last ($t0) = left ($a1)
   add   $t2, $zero, $a1       # i ($t2) = left ($a1)
@@ -91,10 +91,14 @@ continue:
 
   sll   $t3, $a1, 2           # multiply left by 4 and put result in $t3
   add   $t3, $a0, $t3         # $t3 = array addr + 4 * left
-  sw    $t6, 0($t3)            # store array[last] ($t6) in array[left] (addr in $t3)
 
   sll   $t5, $t0, 2
   add   $t5, $a0, $t5
+
+  lw    $t6, 0($t5)
+
+  sw    $t6, 0($t3)           # store array[last] ($t6) in array[left] (addr in $t3)
+
   sw    $t2, 0($t5)            # store array[left] ($t2) in array[last] (addr in $t5)
 
   # Preserve right, left and last across recursive calls
