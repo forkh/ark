@@ -3,7 +3,7 @@
 This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
 <lib desc="#Wiring" name="0">
     <tool name="Splitter">
-      <a name="facing" val="west"/>
+      <a name="facing" val="south"/>
     </tool>
   </lib>
   <lib desc="#Gates" name="1"/>
@@ -42,8 +42,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
   </options>
   <mappings>
     <tool lib="6" map="Button2" name="Menu Tool"/>
-    <tool lib="6" map="Ctrl Button1" name="Menu Tool"/>
     <tool lib="6" map="Button3" name="Menu Tool"/>
+    <tool lib="6" map="Ctrl Button1" name="Menu Tool"/>
   </mappings>
   <toolbar>
     <tool lib="6" name="Poke Tool"/>
@@ -73,14 +73,14 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
     <wire from="(400,450)" to="(400,520)"/>
-    <wire from="(540,460)" to="(550,460)"/>
     <wire from="(560,380)" to="(630,380)"/>
+    <wire from="(540,460)" to="(550,460)"/>
     <wire from="(360,410)" to="(360,460)"/>
     <wire from="(790,100)" to="(790,120)"/>
-    <wire from="(500,250)" to="(500,320)"/>
     <wire from="(930,30)" to="(930,80)"/>
-    <wire from="(790,100)" to="(800,100)"/>
+    <wire from="(500,250)" to="(500,320)"/>
     <wire from="(670,290)" to="(680,290)"/>
+    <wire from="(790,100)" to="(800,100)"/>
     <wire from="(1080,350)" to="(1080,500)"/>
     <wire from="(770,50)" to="(770,80)"/>
     <wire from="(500,320)" to="(510,320)"/>
@@ -102,23 +102,23 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(190,360)" to="(230,360)"/>
     <wire from="(550,330)" to="(550,340)"/>
     <wire from="(440,400)" to="(440,480)"/>
-    <wire from="(130,30)" to="(930,30)"/>
     <wire from="(620,410)" to="(620,440)"/>
+    <wire from="(130,30)" to="(930,30)"/>
     <wire from="(280,80)" to="(770,80)"/>
     <wire from="(720,290)" to="(720,300)"/>
     <wire from="(630,390)" to="(650,390)"/>
     <wire from="(1100,330)" to="(1110,330)"/>
     <wire from="(960,100)" to="(980,100)"/>
     <wire from="(470,380)" to="(470,560)"/>
-    <wire from="(480,250)" to="(500,250)"/>
     <wire from="(470,560)" to="(490,560)"/>
+    <wire from="(480,250)" to="(500,250)"/>
     <wire from="(890,120)" to="(910,120)"/>
     <wire from="(730,130)" to="(740,130)"/>
     <wire from="(390,380)" to="(470,380)"/>
-    <wire from="(490,130)" to="(490,230)"/>
     <wire from="(640,450)" to="(640,540)"/>
-    <wire from="(150,380)" to="(150,400)"/>
+    <wire from="(490,130)" to="(490,230)"/>
     <wire from="(390,420)" to="(460,420)"/>
+    <wire from="(150,380)" to="(150,400)"/>
     <wire from="(590,460)" to="(590,520)"/>
     <wire from="(840,320)" to="(890,320)"/>
     <wire from="(780,120)" to="(790,120)"/>
@@ -175,176 +175,49 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(190,90)" to="(190,360)"/>
     <wire from="(830,410)" to="(840,410)"/>
     <wire from="(700,310)" to="(700,390)"/>
-    <wire from="(750,300)" to="(770,300)"/>
     <wire from="(260,350)" to="(260,410)"/>
+    <wire from="(750,300)" to="(770,300)"/>
     <wire from="(870,210)" to="(870,470)"/>
     <wire from="(530,560)" to="(570,560)"/>
-    <wire from="(460,260)" to="(480,260)"/>
     <wire from="(680,340)" to="(890,340)"/>
+    <wire from="(460,260)" to="(480,260)"/>
     <wire from="(130,360)" to="(140,360)"/>
-    <wire from="(520,380)" to="(560,380)"/>
     <wire from="(860,220)" to="(1050,220)"/>
+    <wire from="(520,380)" to="(560,380)"/>
     <wire from="(480,170)" to="(480,250)"/>
     <wire from="(420,500)" to="(1080,500)"/>
     <wire from="(850,200)" to="(970,200)"/>
-    <wire from="(960,140)" to="(970,140)"/>
     <wire from="(400,520)" to="(590,520)"/>
+    <wire from="(960,140)" to="(970,140)"/>
     <wire from="(420,430)" to="(420,500)"/>
     <wire from="(700,540)" to="(700,550)"/>
     <wire from="(750,410)" to="(750,450)"/>
     <wire from="(690,540)" to="(700,540)"/>
     <wire from="(770,250)" to="(790,250)"/>
-    <wire from="(890,100)" to="(890,120)"/>
     <wire from="(220,70)" to="(240,70)"/>
-    <wire from="(130,30)" to="(130,360)"/>
+    <wire from="(890,100)" to="(890,120)"/>
     <wire from="(350,410)" to="(360,410)"/>
+    <wire from="(130,30)" to="(130,360)"/>
     <wire from="(390,400)" to="(440,400)"/>
-    <wire from="(120,400)" to="(150,400)"/>
-    <wire from="(480,260)" to="(480,400)"/>
     <wire from="(850,220)" to="(860,220)"/>
+    <wire from="(480,260)" to="(480,400)"/>
+    <wire from="(120,400)" to="(150,400)"/>
     <wire from="(560,430)" to="(580,430)"/>
     <wire from="(390,390)" to="(450,390)"/>
     <wire from="(770,80)" to="(800,80)"/>
-    <wire from="(910,80)" to="(930,80)"/>
     <wire from="(750,410)" to="(760,410)"/>
+    <wire from="(910,80)" to="(930,80)"/>
     <wire from="(680,130)" to="(680,160)"/>
     <wire from="(390,410)" to="(430,410)"/>
-    <wire from="(680,290)" to="(680,340)"/>
     <wire from="(760,450)" to="(760,560)"/>
+    <wire from="(680,290)" to="(680,340)"/>
     <wire from="(930,380)" to="(930,490)"/>
     <wire from="(560,380)" to="(560,430)"/>
-    <wire from="(730,320)" to="(730,510)"/>
     <wire from="(520,350)" to="(520,360)"/>
+    <wire from="(730,320)" to="(730,510)"/>
     <wire from="(540,390)" to="(630,390)"/>
     <wire from="(840,280)" to="(840,320)"/>
-    <comp lib="0" loc="(220,70)" name="Constant">
-      <a name="width" val="32"/>
-      <a name="value" val="0x4"/>
-    </comp>
-    <comp lib="0" loc="(370,460)" name="Splitter">
-      <a name="fanout" val="8"/>
-      <a name="incoming" val="9"/>
-      <a name="bit1" val="0"/>
-      <a name="bit2" val="1"/>
-      <a name="bit3" val="2"/>
-      <a name="bit4" val="3"/>
-      <a name="bit5" val="4"/>
-      <a name="bit6" val="5"/>
-      <a name="bit7" val="6"/>
-      <a name="bit8" val="7"/>
-    </comp>
-    <comp lib="7" loc="(800,410)" name="PLA">
-      <a name="in_width" val="8"/>
-      <a name="out_width" val="4"/>
-      <a name="truth_table">00xxxxxx,0010#
-01xxxxxx,0110#
-10xx0000,0010#
-1xxx0010,0110#
-10xx0100,0000#
-10xx0101,0001#
-1xxx1010,0111#</a>
-      <a name="label" val="ALU control"/>
-    </comp>
-    <comp lib="0" loc="(500,400)" name="Splitter">
-      <a name="fanout" val="4"/>
-      <a name="incoming" val="32"/>
-      <a name="bit0" val="3"/>
-      <a name="bit1" val="3"/>
-      <a name="bit2" val="3"/>
-      <a name="bit4" val="3"/>
-      <a name="bit5" val="3"/>
-      <a name="bit6" val="3"/>
-      <a name="bit7" val="3"/>
-      <a name="bit8" val="3"/>
-      <a name="bit9" val="3"/>
-      <a name="bit10" val="3"/>
-      <a name="bit11" val="3"/>
-      <a name="bit12" val="3"/>
-      <a name="bit13" val="3"/>
-      <a name="bit14" val="3"/>
-      <a name="bit15" val="3"/>
-      <a name="bit16" val="2"/>
-      <a name="bit17" val="2"/>
-      <a name="bit18" val="2"/>
-      <a name="bit19" val="2"/>
-      <a name="bit20" val="2"/>
-      <a name="bit21" val="1"/>
-      <a name="bit22" val="1"/>
-      <a name="bit23" val="1"/>
-      <a name="bit24" val="1"/>
-      <a name="bit25" val="1"/>
-      <a name="bit26" val="0"/>
-      <a name="bit27" val="0"/>
-      <a name="bit28" val="0"/>
-      <a name="bit29" val="0"/>
-      <a name="bit30" val="0"/>
-      <a name="bit31" val="0"/>
-    </comp>
-    <comp lib="7" loc="(1030,320)" name="MIPS RAM">
-      <a name="addrWidth" val="24"/>
-    </comp>
-    <comp lib="7" loc="(820,220)" name="MIPS ALU"/>
-    <comp lib="7" loc="(460,260)" name="MIPSProgramROM">
-      <a name="contents">lw  $t0, 0($a0)
-addu $t1, $t0, $t0
-</a>
-    </comp>
-    <comp lib="0" loc="(730,130)" name="Constant">
-      <a name="width" val="5"/>
-      <a name="value" val="0x2"/>
-    </comp>
-    <comp lib="0" loc="(690,540)" name="Bit Extender">
-      <a name="in_width" val="6"/>
-      <a name="out_width" val="8"/>
-    </comp>
-    <comp lib="3" loc="(610,570)" name="Shifter"/>
-    <comp lib="0" loc="(970,410)" name="Tunnel">
-      <a name="label" val="Clock"/>
-    </comp>
-    <comp lib="3" loc="(280,80)" name="Adder">
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="0" loc="(550,460)" name="Splitter">
-      <a name="fanout" val="1"/>
-      <a name="incoming" val="16"/>
-      <a name="bit0" val="none"/>
-      <a name="bit1" val="none"/>
-      <a name="bit2" val="none"/>
-      <a name="bit3" val="none"/>
-      <a name="bit4" val="none"/>
-      <a name="bit5" val="none"/>
-      <a name="bit6" val="none"/>
-      <a name="bit7" val="none"/>
-      <a name="bit8" val="none"/>
-      <a name="bit9" val="none"/>
-      <a name="bit10" val="none"/>
-      <a name="bit11" val="0"/>
-      <a name="bit12" val="0"/>
-      <a name="bit13" val="0"/>
-      <a name="bit14" val="0"/>
-      <a name="bit15" val="0"/>
-    </comp>
-    <comp lib="0" loc="(630,430)" name="Splitter">
-      <a name="facing" val="south"/>
-      <a name="fanout" val="1"/>
-      <a name="incoming" val="16"/>
-      <a name="bit1" val="0"/>
-      <a name="bit2" val="0"/>
-      <a name="bit3" val="0"/>
-      <a name="bit4" val="0"/>
-      <a name="bit5" val="0"/>
-      <a name="bit6" val="none"/>
-      <a name="bit7" val="none"/>
-      <a name="bit8" val="none"/>
-      <a name="bit9" val="none"/>
-      <a name="bit10" val="none"/>
-      <a name="bit11" val="none"/>
-      <a name="bit12" val="none"/>
-      <a name="bit13" val="none"/>
-      <a name="bit14" val="none"/>
-      <a name="bit15" val="none"/>
-    </comp>
-    <comp lib="0" loc="(50,40)" name="Clock"/>
+    <comp lib="7" loc="(670,240)" name="RegisterFile"/>
     <comp lib="0" loc="(860,270)" name="Splitter">
       <a name="facing" val="west"/>
       <a name="fanout" val="1"/>
@@ -381,21 +254,63 @@ addu $t1, $t0, $t0
       <a name="bit30" val="none"/>
       <a name="bit31" val="none"/>
     </comp>
-    <comp lib="0" loc="(460,170)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="Clock"/>
+    <comp lib="7" loc="(1030,320)" name="MIPS RAM">
+      <a name="addrWidth" val="24"/>
     </comp>
-    <comp lib="0" loc="(120,400)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="Clock"/>
+    <comp lib="0" loc="(630,430)" name="Splitter">
+      <a name="facing" val="south"/>
+      <a name="fanout" val="1"/>
+      <a name="incoming" val="16"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="none"/>
+      <a name="bit7" val="none"/>
+      <a name="bit8" val="none"/>
+      <a name="bit9" val="none"/>
+      <a name="bit10" val="none"/>
+      <a name="bit11" val="none"/>
+      <a name="bit12" val="none"/>
+      <a name="bit13" val="none"/>
+      <a name="bit14" val="none"/>
+      <a name="bit15" val="none"/>
     </comp>
-    <comp lib="2" loc="(1100,330)" name="Multiplexer">
-      <a name="width" val="32"/>
-      <a name="enable" val="false"/>
-    </comp>
-    <comp lib="4" loc="(170,360)" name="Register">
-      <a name="width" val="32"/>
-      <a name="label" val="PC"/>
+    <comp lib="0" loc="(500,400)" name="Splitter">
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="32"/>
+      <a name="bit0" val="3"/>
+      <a name="bit1" val="3"/>
+      <a name="bit2" val="3"/>
+      <a name="bit4" val="3"/>
+      <a name="bit5" val="3"/>
+      <a name="bit6" val="3"/>
+      <a name="bit7" val="3"/>
+      <a name="bit8" val="3"/>
+      <a name="bit9" val="3"/>
+      <a name="bit10" val="3"/>
+      <a name="bit11" val="3"/>
+      <a name="bit12" val="3"/>
+      <a name="bit13" val="3"/>
+      <a name="bit14" val="3"/>
+      <a name="bit15" val="3"/>
+      <a name="bit16" val="2"/>
+      <a name="bit17" val="2"/>
+      <a name="bit18" val="2"/>
+      <a name="bit19" val="2"/>
+      <a name="bit20" val="2"/>
+      <a name="bit21" val="1"/>
+      <a name="bit22" val="1"/>
+      <a name="bit23" val="1"/>
+      <a name="bit24" val="1"/>
+      <a name="bit25" val="1"/>
+      <a name="bit26" val="0"/>
+      <a name="bit27" val="0"/>
+      <a name="bit28" val="0"/>
+      <a name="bit29" val="0"/>
+      <a name="bit30" val="0"/>
+      <a name="bit31" val="0"/>
     </comp>
     <comp lib="7" loc="(320,410)" name="PLA">
       <a name="in_width" val="6"/>
@@ -406,28 +321,108 @@ addu $t1, $t0, $t0
 000100,000000101#beq</a>
       <a name="label" val="Control"/>
     </comp>
-    <comp lib="3" loc="(750,560)" name="Adder"/>
+    <comp lib="0" loc="(70,40)" name="Tunnel">
+      <a name="label" val="Clock"/>
+    </comp>
+    <comp lib="0" loc="(730,130)" name="Constant">
+      <a name="width" val="5"/>
+      <a name="value" val="0x2"/>
+    </comp>
+    <comp lib="2" loc="(1100,330)" name="Multiplexer">
+      <a name="width" val="32"/>
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="3" loc="(840,90)" name="Adder">
+      <a name="width" val="32"/>
+    </comp>
     <comp lib="2" loc="(910,80)" name="Multiplexer">
       <a name="width" val="32"/>
       <a name="enable" val="false"/>
     </comp>
-    <comp lib="0" loc="(690,390)" name="Bit Extender">
-      <a name="in_width" val="16"/>
-      <a name="out_width" val="32"/>
-      <a name="type" val="sign"/>
+    <comp lib="1" loc="(910,120)" name="AND Gate">
+      <a name="facing" val="west"/>
+      <a name="inputs" val="2"/>
     </comp>
-    <comp lib="3" loc="(780,120)" name="Shifter">
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="2" loc="(610,440)" name="Multiplexer">
-      <a name="width" val="5"/>
-      <a name="enable" val="false"/>
-    </comp>
+    <comp lib="0" loc="(50,40)" name="Clock"/>
     <comp lib="2" loc="(750,300)" name="Multiplexer">
       <a name="width" val="32"/>
       <a name="enable" val="false"/>
     </comp>
-    <comp lib="0" loc="(70,40)" name="Tunnel">
+    <comp lib="3" loc="(280,80)" name="Adder">
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(690,540)" name="Bit Extender">
+      <a name="in_width" val="6"/>
+      <a name="out_width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(970,410)" name="Tunnel">
+      <a name="label" val="Clock"/>
+    </comp>
+    <comp lib="3" loc="(610,570)" name="Shifter"/>
+    <comp lib="0" loc="(370,460)" name="Splitter">
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="9"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="1"/>
+      <a name="bit3" val="2"/>
+      <a name="bit4" val="3"/>
+      <a name="bit5" val="4"/>
+      <a name="bit6" val="5"/>
+      <a name="bit7" val="6"/>
+      <a name="bit8" val="7"/>
+    </comp>
+    <comp lib="3" loc="(780,120)" name="Shifter">
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="3" loc="(750,560)" name="Adder"/>
+    <comp lib="7" loc="(800,410)" name="PLA">
+      <a name="in_width" val="8"/>
+      <a name="out_width" val="4"/>
+      <a name="truth_table">00xxxxxx,0010#
+01xxxxxx,0110#
+10xx0000,0010#
+1xxx0010,0110#
+10xx0100,0000#
+10xx0101,0001#
+1xxx1010,0111#</a>
+      <a name="label" val="ALU control"/>
+    </comp>
+    <comp lib="0" loc="(220,70)" name="Constant">
+      <a name="width" val="32"/>
+      <a name="value" val="0x4"/>
+    </comp>
+    <comp lib="7" loc="(460,260)" name="MIPSProgramROM">
+      <a name="contents">lw  $t0, 0($a0)
+addu $t1, $t0, $t0
+</a>
+    </comp>
+    <comp lib="7" loc="(820,220)" name="MIPS ALU"/>
+    <comp lib="2" loc="(610,440)" name="Multiplexer">
+      <a name="width" val="5"/>
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="0" loc="(550,460)" name="Splitter">
+      <a name="fanout" val="1"/>
+      <a name="incoming" val="16"/>
+      <a name="bit0" val="none"/>
+      <a name="bit1" val="none"/>
+      <a name="bit2" val="none"/>
+      <a name="bit3" val="none"/>
+      <a name="bit4" val="none"/>
+      <a name="bit5" val="none"/>
+      <a name="bit6" val="none"/>
+      <a name="bit7" val="none"/>
+      <a name="bit8" val="none"/>
+      <a name="bit9" val="none"/>
+      <a name="bit10" val="none"/>
+      <a name="bit11" val="0"/>
+      <a name="bit12" val="0"/>
+      <a name="bit13" val="0"/>
+      <a name="bit14" val="0"/>
+      <a name="bit15" val="0"/>
+    </comp>
+    <comp lib="0" loc="(460,170)" name="Tunnel">
+      <a name="facing" val="east"/>
       <a name="label" val="Clock"/>
     </comp>
     <comp lib="0" loc="(560,580)" name="Constant">
@@ -438,13 +433,18 @@ addu $t1, $t0, $t0
       <a name="in_width" val="2"/>
       <a name="out_width" val="8"/>
     </comp>
-    <comp lib="7" loc="(670,240)" name="RegisterFile"/>
-    <comp lib="3" loc="(840,90)" name="Adder">
-      <a name="width" val="32"/>
+    <comp lib="0" loc="(120,400)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Clock"/>
     </comp>
-    <comp lib="1" loc="(910,120)" name="AND Gate">
-      <a name="facing" val="west"/>
-      <a name="inputs" val="2"/>
+    <comp lib="4" loc="(170,360)" name="Register">
+      <a name="width" val="32"/>
+      <a name="label" val="PC"/>
+    </comp>
+    <comp lib="0" loc="(690,390)" name="Bit Extender">
+      <a name="in_width" val="16"/>
+      <a name="out_width" val="32"/>
+      <a name="type" val="sign"/>
     </comp>
   </circuit>
 </project>
