@@ -317,14 +317,41 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="enable" val="false"/>
     </comp>
     <comp lib="7" loc="(430,310)" name="MIPSProgramROM">
-      <a name="contents">addiu $s0, $zero, 5
-addiu $s1, $zero, 5
+      <a name="contents">addiu $s0, $zero, 42
 nop
 nop
 nop
 nop
 nop
-and $s2, $s0, $s1
+ori   $s1, $s0, 35
+
+
+#addiu $s0, $zero, 42  # $s0 = 42 = 101010_2
+#addiu $s1, $zero, 35  # $s1 = 35 = 100011_2
+#nop
+#nop
+#nop
+#nop
+#nop
+#or    $s2, $s0, $s1   # $s2 = $s0 AND $s1 = 101011_2 = 43
+
+
+#addiu $s0, $zero, 42
+#nop
+#nop
+#nop
+#nop
+#nop
+#andi  $s1, $s0, 35
+
+#addiu $s0, $zero, 42
+#addiu $s1, $zero, 35
+#nop
+#nop
+#nop
+#nop
+#nop
+#and $s2, $s0, $s1
 
 
 
@@ -1087,7 +1114,9 @@ and $s2, $s0, $s1
 10101010,0111#slt, ALU: slt
 10001010,0111#slti, ALU: slt
 10100011,0110#subu, ALU: sub
-10100100,0000#AND, ALU: AND</a>
+10100100,0000#and, ALU: and
+10100011,0000#andi, ALU: and
+10100101,0001#or, ALU: or</a>
     </comp>
   </circuit>
   <circuit name="control">
@@ -1215,7 +1244,8 @@ and $s2, $s0, $s1
       <a name="out_width" val="9"/>
       <a name="truth_table">001001,010100000#addiu
 000000,100100010#R-format
-001010,010100010#slti</a>
+001010,010100010#slti
+001100,010100010#andi</a>
       <a name="label" val="Control"/>
     </comp>
   </circuit>

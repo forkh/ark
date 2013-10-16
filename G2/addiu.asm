@@ -1,11 +1,38 @@
-addiu $s0, $zero, 5
-addiu $s1, $zero, 5
+addiu $s0, $zero, 42
 nop
 nop
 nop
 nop
 nop
-and $s2, $s0, $s1
+ori   $s1, $s0, 35
+
+
+#addiu $s0, $zero, 42  # $s0 = 42 = 101010_2
+#addiu $s1, $zero, 35  # $s1 = 35 = 100011_2
+#nop
+#nop
+#nop
+#nop
+#nop
+#or    $s2, $s0, $s1   # $s2 = $s0 AND $s1 = 101011_2 = 43
+
+
+#addiu $s0, $zero, 42
+#nop
+#nop
+#nop
+#nop
+#nop
+#andi  $s1, $s0, 35
+
+#addiu $s0, $zero, 42
+#addiu $s1, $zero, 35
+#nop
+#nop
+#nop
+#nop
+#nop
+#and $s2, $s0, $s1
 
 
 
