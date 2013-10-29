@@ -223,8 +223,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(600,480)" to="(680,480)"/>
     <wire from="(930,160)" to="(930,200)"/>
     <wire from="(630,410)" to="(630,550)"/>
-    <wire from="(950,610)" to="(1490,610)"/>
     <wire from="(700,930)" to="(700,1060)"/>
+    <wire from="(950,610)" to="(1490,610)"/>
     <wire from="(1190,410)" to="(1430,410)"/>
     <wire from="(1140,370)" to="(1250,370)"/>
     <wire from="(840,1060)" to="(1100,1060)"/>
@@ -1240,7 +1240,7 @@ DONE:
       <a name="truth_table">00xxxxxx,0010#addiu, ALU: add
 10100001,0010#addu, ALU: add
 10101010,0111#slt, ALU: slt
-10001010,0111#slti, ALU: slt
+01xxxxxx,0111#slti, ALU: slt
 10100011,0110#subu, ALU: sub
 10100100,0000#and, ALU: and
 10100011,0000#andi, ALU: and
@@ -1317,7 +1317,7 @@ DONE:
       <a name="out_width" val="9"/>
       <a name="truth_table">001001,010100000#addiu
 000000,100100010#R-format
-001010,010100010#slti
+001010,010100001#slti
 001100,010100010#andi</a>
       <a name="label" val="Control"/>
     </comp>

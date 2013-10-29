@@ -31,10 +31,13 @@ addu $zero, $zero, $zero # nop
 slt $3, $1, $2
 slt $4, $2, $1
 
+#- ^ Fixed -----------------------------------------
+
 # Test 4: slti
 # Expected results: $5 = 0 and $6 = 1
 slti $5, $1, 50
 slti $6, $2, 80
+
 
 # Test 5: subu
 # Expected result: $7 = -20
