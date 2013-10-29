@@ -36,12 +36,9 @@ slt $4, $2, $1
 slti $5, $1, 50
 slti $6, $2, 80
 
-#- ^ Fixed -----------------------------------------
-
 # Test 5: subu
 # Expected result: $7 = -20
 subu $7, $2, $1
-
 
 # Test 6: and
 # Expected result: $8 = 0x00000003
@@ -58,6 +55,8 @@ or $10, $2, $1
 # Test 9: ori
 # Expected result: $11 = 0x000003eb
 ori $11, $2, 1000
+
+#- ^ Fixed -----------------------------------------
 
 # Test 10: sw and lw
 # Expected result: $12 = 75
