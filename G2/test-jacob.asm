@@ -18,7 +18,6 @@ addiu $1, $zero, 55
 # Expected result: $2 = 75
 addiu $2, $zero, 20
 addu $zero, $zero, $zero # nop
-#nop # akh
 addu $zero, $zero, $zero # nop
 addu $2, $1, $2
 addu $zero, $zero, $zero # nop
