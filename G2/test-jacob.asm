@@ -56,12 +56,12 @@ or $10, $2, $1
 # Expected result: $11 = 0x000003eb
 ori $11, $2, 1000
 
-#- ^ Fixed -----------------------------------------
-
 # Test 10: sw and lw
 # Expected result: $12 = 75
 sw $2 , 0($gp)
 lw $12, 0($gp)
+
+#- ^ Fixed -----------------------------------------
 
 # Test 11: beq
 # Expected result: $13 = $14 = 75
