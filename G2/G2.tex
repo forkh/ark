@@ -9,7 +9,7 @@
 \begin{document}
 \title{Gruppeøvelse 2}
 \author{Anders Kiel Hovgaard\\Rúni Klein Hansen}
-\date{20 oktober 2013}
+\date{Genaflevering 1 November 2013}
 \maketitle
 
 \section{Introduktion}
@@ -41,5 +41,25 @@ Disse instruktioner virker:
 Vi kan få \textsf{slti} at virke, med den konsekvens at \textsf{ori} ikke
 virker da vi med nuværende implementation, ikke kan differentiere imellem ALUOp
 kontrolsignaler. 
+
+\subsection{Forwarding Unit}
+Vi har laves to forskellige forwarding forsøg, en med gates og en med en PLA.
+Implementationen med gates virkede delvist, mens PLA implementationen blev
+aldrig rigtig testet da Logisim ikke gider at gemme sandhedstabellen for
+PLA'en.\\
+Så den inkluderede forward unit er det første forsøg.
+
+\subsection{Hazard Detection Unit}
+Vores HDU virker, men noget tyder på at den ikke laver nok, da dette f.eks. ikke
+giver korrekt resultat:\\
+
+\begin{verbatim}
+  addiu $2, $zero, 5
+  addu  $2, $2, $2
+\end{verbatim}
+
+\noindent Dette giver ikke \emph{\$2 = 10}.
+
+
 
 \end{document}
