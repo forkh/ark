@@ -65,15 +65,11 @@ lw $12, 0($gp)
 # $13 = 0x0000004b + 0x00000003 = 0x4e = 78
 # ikke 0x3
 
-#- ^ Fixed -----------------------------------------
-
 # Test 11: beq
 # Expected result: $13 = $14 = 0x0000004b = 75
 addu $13, $zero, $2
 beq $zero, $zero, TAKEN
 addu $zero, $zero, $zero # nop (for your delay slot)
-nop
-nop
 nop
 nop
 addu $13, $13, $13
@@ -82,6 +78,8 @@ beq $zero, $2, NOTTAKEN
 addu $zero, $zero, $zero # nop (for your delay slot)
 addu $14, $zero, $13
 NOTTAKEN:
+
+#- ^ Fixed -----------------------------------------
 
 # Test 12: jal & jr
 # Expected result: $15 = $16 = 0x00000096 = 150
