@@ -60,73 +60,74 @@ ori $11, $2, 1000
 # Expected result: $12 = 0x0000004b = 75
 sw $2 , 0($gp)
 lw $12, 0($gp)
-add $13, $12, $8
+
+#add $13, $12, $8
 # $13 = 0x0000004b + 0x00000003 = 0x4e = 78
 # ikke 0x3
 
-##- ^ Fixed -----------------------------------------
-#
-## Test 11: beq
-## Expected result: $13 = $14 = 0x0000004b = 75
-#addu $13, $zero, $2
-#beq $zero, $zero, TAKEN
-#addu $zero, $zero, $zero # nop (for your delay slot)
-#nop
-#nop
-#nop
-#nop
-#addu $13, $13, $13
-#TAKEN:
-#beq $zero, $2, NOTTAKEN
-#addu $zero, $zero, $zero # nop (for your delay slot)
-#addu $14, $zero, $13
-#NOTTAKEN:
-#
-## Test 12: jal & jr
-## Expected result: $15 = $16 = 0x00000096 = 150
-#jal JALTEST
-#addu $zero, $zero, $zero # nop (for your delay slot)
-#addu $15, $zero, $16
-#beq $zero, $zero, END
-#addu $zero, $zero, $zero # nop (for your delay slot)
-#JALTEST:
-#addu $16, $2, $2
-#jr $31
-#addu $zero, $zero, $zero # nop (for your delay slot)
-#END:
-#
-#
-##---------------------------------------------------
-## Test forwarding and hazards (depending on
-## your implementation).
-##---------------------------------------------------
-#
-## Test 13: Forwarding & hazards (Can be forwarded)
-## Expected result: $17 = 150
-#addu $17, $zero, $2
-#addu $17, $17, $17
-#
-## Test 14: Forwarding & hazards (Must be stalled)
-## Expected result: $18 = $19 = 8
-#addiu $18, $gp, 8 
-#sw $18, 4($18)
-#lw $18, 4($18)
-#sw $18, 4($18)
-#lw $19, 4($18)
-#
-#
-##---------------------------------------------------
-## Test the delay slot
-## NOTE: Your register 20 will not correspond with
-## mars.
-##---------------------------------------------------
-#
-## Test 15: Delay slot
-## Expected result: $20 = 16
-#beq $zero, $zero, DONE
-#addu $20, $18, $19
-#DONE:
-#
-#
-#
-#
+#- ^ Fixed -----------------------------------------
+
+# Test 11: beq
+# Expected result: $13 = $14 = 0x0000004b = 75
+addu $13, $zero, $2
+beq $zero, $zero, TAKEN
+addu $zero, $zero, $zero # nop (for your delay slot)
+nop
+nop
+nop
+nop
+addu $13, $13, $13
+TAKEN:
+beq $zero, $2, NOTTAKEN
+addu $zero, $zero, $zero # nop (for your delay slot)
+addu $14, $zero, $13
+NOTTAKEN:
+
+# Test 12: jal & jr
+# Expected result: $15 = $16 = 0x00000096 = 150
+jal JALTEST
+addu $zero, $zero, $zero # nop (for your delay slot)
+addu $15, $zero, $16
+beq $zero, $zero, END
+addu $zero, $zero, $zero # nop (for your delay slot)
+JALTEST:
+addu $16, $2, $2
+jr $31
+addu $zero, $zero, $zero # nop (for your delay slot)
+END:
+
+
+#---------------------------------------------------
+# Test forwarding and hazards (depending on
+# your implementation).
+#---------------------------------------------------
+
+# Test 13: Forwarding & hazards (Can be forwarded)
+# Expected result: $17 = 150
+addu $17, $zero, $2
+addu $17, $17, $17
+
+# Test 14: Forwarding & hazards (Must be stalled)
+# Expected result: $18 = $19 = 8
+addiu $18, $gp, 8 
+sw $18, 4($18)
+lw $18, 4($18)
+sw $18, 4($18)
+lw $19, 4($18)
+
+
+#---------------------------------------------------
+# Test the delay slot
+# NOTE: Your register 20 will not correspond with
+# mars.
+#---------------------------------------------------
+
+# Test 15: Delay slot
+# Expected result: $20 = 16
+beq $zero, $zero, DONE
+addu $20, $18, $19
+DONE:
+
+
+
+
