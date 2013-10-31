@@ -70,8 +70,6 @@ lw $12, 0($gp)
 addu $13, $zero, $2
 beq $zero, $zero, TAKEN
 addu $zero, $zero, $zero # nop (for your delay slot)
-nop
-nop
 addu $13, $13, $13
 TAKEN:
 beq $zero, $2, NOTTAKEN
